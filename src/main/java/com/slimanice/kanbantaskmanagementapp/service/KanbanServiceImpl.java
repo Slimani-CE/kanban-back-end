@@ -70,6 +70,15 @@ public class KanbanServiceImpl implements KanbanService {
         return userRepository.findAll().stream().map(userMapper::toUserResponseDTO).toList();
     }
 
+    @Override
+    public void deleteUser(Long id) throws UserNotExistException{
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            throw new UserNotExistException("User with id " + id + " not exist");
+        }
+        userRepository.deleteById(id);
+    }
+
     // Save new board
     @Override
     public BoardResponseDTO saveBoard(BoardRequestDTO request, Long userId) throws UserNotExistException {
@@ -121,5 +130,32 @@ public class KanbanServiceImpl implements KanbanService {
     @Override
     public Subtask getSubtask(Long id) throws SubtaskNotExistException {
         return subtaskRepository.findById(id).orElseThrow(() -> new SubtaskNotExistException("Subtask with id " + id + " not exist"));
+    }
+
+    @Override
+    public void deleteBoard(Long boardId) throws BoardNotExistException {
+        Board board = boardRepository.findById(boardId).orElse(null);
+        if (board == null) {
+            throw new BoardNotExistException("Board with id " + boardId + " not exist");
+        }
+        boardRepository.deleteById(boardId);
+    }
+
+    @Override
+    public void deleteTask(Long taskId) throws TaskNotExistException {
+        Task task = taskRepository.findById(taskId).orElse(null);
+        if (task == null) {
+            throw new TaskNotExistException("Task with id " + taskId + " not exist");
+        }
+        taskRepository.deleteById(taskId);
+    }
+
+    @Override
+    public void deleteSubtask(Long subtaskId) throws SubtaskNotExistException {
+        Subtask subtask = subtaskRepository.findById(subtaskId).orElse(null);
+        if (subtask == null) {
+            throw new SubtaskNotExistException("Subtask with id " + subtaskId + " not exist");
+        }
+        subtaskRepository.deleteById(subtaskId);
     }
 }

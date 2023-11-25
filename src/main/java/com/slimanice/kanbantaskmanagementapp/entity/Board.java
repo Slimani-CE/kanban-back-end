@@ -20,7 +20,7 @@ public class Board {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne
     private User user;
-    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Task> taskList = new ArrayList<>();
     @ElementCollection
     private List<String> statusList = new ArrayList<>();

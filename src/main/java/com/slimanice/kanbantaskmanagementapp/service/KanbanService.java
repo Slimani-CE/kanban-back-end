@@ -4,7 +4,6 @@ import com.slimanice.kanbantaskmanagementapp.dto.BoardRequestDTO;
 import com.slimanice.kanbantaskmanagementapp.dto.BoardResponseDTO;
 import com.slimanice.kanbantaskmanagementapp.dto.UserRequestDTO;
 import com.slimanice.kanbantaskmanagementapp.dto.UserResponseDTO;
-import com.slimanice.kanbantaskmanagementapp.entity.Board;
 import com.slimanice.kanbantaskmanagementapp.entity.Subtask;
 import com.slimanice.kanbantaskmanagementapp.entity.Task;
 import com.slimanice.kanbantaskmanagementapp.exception.*;
@@ -23,6 +22,9 @@ public interface KanbanService {
 
     // Get All Users
     List<UserResponseDTO> getAllUsers();
+
+    // Delete user
+    void deleteUser(Long id) throws UserNotExistException;
 
     // Save new board
     BoardResponseDTO saveBoard(BoardRequestDTO board, Long userId) throws UserNotExistException;
@@ -44,4 +46,10 @@ public interface KanbanService {
 
     // Get subtask by id
     Subtask getSubtask(Long id) throws SubtaskNotExistException;
+
+    void deleteBoard(Long boardId) throws BoardNotExistException;
+
+    void deleteTask(Long taskId) throws TaskNotExistException;
+
+    void deleteSubtask(Long subtaskId) throws SubtaskNotExistException;
 }

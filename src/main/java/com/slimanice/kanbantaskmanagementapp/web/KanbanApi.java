@@ -6,10 +6,7 @@ import com.slimanice.kanbantaskmanagementapp.dto.UserRequestDTO;
 import com.slimanice.kanbantaskmanagementapp.dto.UserResponseDTO;
 import com.slimanice.kanbantaskmanagementapp.entity.Subtask;
 import com.slimanice.kanbantaskmanagementapp.entity.Task;
-import com.slimanice.kanbantaskmanagementapp.exception.BoardNotExistException;
-import com.slimanice.kanbantaskmanagementapp.exception.TaskNotExistException;
-import com.slimanice.kanbantaskmanagementapp.exception.UserNotExistException;
-import com.slimanice.kanbantaskmanagementapp.exception.UsernameAlreadyExistException;
+import com.slimanice.kanbantaskmanagementapp.exception.*;
 import com.slimanice.kanbantaskmanagementapp.service.KanbanService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -71,6 +68,17 @@ public class KanbanApi {
         }
     }
 
+    // Drop user
+    @DeleteMapping("users/user/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        try {
+            kanbanService.deleteUser(id);
+            return ResponseEntity.ok().build();
+        } catch (UserNotExistException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     // Save new board for user
     @PostMapping("users/user/{userId}/boards/board")
     public ResponseEntity<BoardResponseDTO> saveBoard(@PathVariable Long userId, @RequestBody BoardRequestDTO request) {
@@ -92,6 +100,17 @@ public class KanbanApi {
         }
     }
 
+    // Drop board
+    @DeleteMapping("boards/board/{boardId}")
+    public ResponseEntity<Void> deleteBoard(@PathVariable Long boardId) {
+        try {
+            kanbanService.deleteBoard(boardId);
+            return ResponseEntity.ok().build();
+        } catch (BoardNotExistException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     // Save new task for board
     @PostMapping("boards/board/{boardId}/tasks/task")
     public ResponseEntity<Task> saveTask(@PathVariable Long boardId, @RequestBody Task task) {
@@ -102,12 +121,34 @@ public class KanbanApi {
         }
     }
 
+    // Drop task
+    @DeleteMapping("tasks/task/{taskId}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long taskId) {
+        try {
+            kanbanService.deleteTask(taskId);
+            return ResponseEntity.ok().build();
+        } catch (TaskNotExistException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     // Save new subtask for task
     @PostMapping("tasks/task/{taskId}/subtasks/subtask")
     public ResponseEntity<Subtask> saveSubtask(@PathVariable Long taskId, @RequestBody Subtask subtask) {
         try {
             return ResponseEntity.ok(kanbanService.saveSubtask(subtask, taskId));
         } catch (TaskNotExistException e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    // Drop subtask
+    @DeleteMapping("subtasks/subtask/{subtaskId}")
+    public ResponseEntity<Void> deleteSubtask(@PathVariable Long subtaskId) {
+        try {
+            kanbanService.deleteSubtask(subtaskId);
+            return ResponseEntity.ok().build();
+        } catch (SubtaskNotExistException e) {
             return ResponseEntity.badRequest().build();
         }
     }
