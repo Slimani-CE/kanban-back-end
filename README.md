@@ -97,8 +97,6 @@ Future iterations of the application may include:
 2. 🌟 Enhanced User Experience: Continual refinement of the user interface and user experience based on user feedback.
 3. 📊 Advanced Analytics: Introducing analytics and reporting features to track productivity and task progress.
 
-## Conclusion
-
 
 ## Author
 - 2023 © [Mustapha SLIMANI](https://slimani-ce.github.io)
