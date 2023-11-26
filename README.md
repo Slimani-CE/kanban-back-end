@@ -1,11 +1,11 @@
 # 🍃 Kanban Task Management Application : Back-End Module
 ## Overview 
-A Kanban Task Management Application is a comprehensive project aimed at building a robust task management system. It integrates a Spring-based backend for server-side functionalities and a React-based frontend for an intuitive user interface. Embracing a Test-Driven Development (TDD) approach, the project ensures reliability and stability throughout the development lifecycle.
+The Kanban Task Management Application is a full-stack task management solution that allows users to create, update, and delete tasks, as well as move them across different stages of completion. The application is built using Spring Boot and React, and containerized using Docker. The back-end module is deployed on an Oracle Cloud Virtual Instance.
 
 **Explore the Front-End Module repository [here](https://github.com/Slimani-CE/kanban-front-end).**
 
 #
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)   ![Postgres](https://img.shields.io/badge/postgresql-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![Maven](https://img.shields.io/badge/maven-%23C71A36.svg?style=for-the-badge&logo=apache-maven&logoColor=white) ![Lombok](https://img.shields.io/badge/lombok-%23F7B500.svg?style=for-the-badge&logo=lombok&logoColor=white) ![JUnit](https://img.shields.io/badge/junit-%23000.svg?style=for-the-badge&logo=junit&logoColor=white) ![Postman](https://img.shields.io/badge/postman-%23FF6C37.svg?style=for-the-badge&logo=postman&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) 
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)   ![Postgres](https://img.shields.io/badge/postgresql-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![Maven](https://img.shields.io/badge/maven-%23C71A36.svg?style=for-the-badge&logo=apache-maven&logoColor=white) ![Lombok](https://img.shields.io/badge/lombok-%23F7B500.svg?style=for-the-badge&logo=lombok&logoColor=white) ![JUnit](https://img.shields.io/badge/junit-%23000.svg?style=for-the-badge&logo=junit&logoColor=white) ![Postman](https://img.shields.io/badge/postman-%23FF6C37.svg?style=for-the-badge&logo=postman&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)  
 
 ## Database Schema
 ![Database Schema](assets/db-schema.png)
@@ -47,6 +47,7 @@ The project utilizes various dependencies managed through Maven, including:
 | JUnit           | Unit testing framework for Java                                                                        |
 | Postman         | API Development & Test Environment                                                                     |
 | Docker          | Containerization Platform                                                                              |
+
 
 
 ## Application Configuration
@@ -97,7 +98,7 @@ Future iterations of the application may include:
 3. 📊 Advanced Analytics: Introducing analytics and reporting features to track productivity and task progress.
 
 ## Conclusion
-The Kanban Task Management Application strives to offer a comprehensive and user-friendly task management solution by leveraging the capabilities of Spring and React while adhering to the best practices of Test-Driven Development for reliability and scalability.
+
 
 ## Author
 - 2023 © [Mustapha SLIMANI](https://slimani-ce.github.io)
