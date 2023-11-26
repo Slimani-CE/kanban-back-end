@@ -5,7 +5,10 @@ A Kanban Task Management Application is a comprehensive project aimed at buildin
 **Explore the Front-End Module repository [here](https://github.com/Slimani-CE/kanban-front-end).**
 
 #
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)   ![Postgres](https://img.shields.io/badge/postgresql-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) 
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)   ![Postgres](https://img.shields.io/badge/postgresql-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![Maven](https://img.shields.io/badge/maven-%23C71A36.svg?style=for-the-badge&logo=apache-maven&logoColor=white) ![Lombok](https://img.shields.io/badge/lombok-%23F7B500.svg?style=for-the-badge&logo=lombok&logoColor=white) ![JUnit](https://img.shields.io/badge/junit-%23000.svg?style=for-the-badge&logo=junit&logoColor=white) ![Postman](https://img.shields.io/badge/postman-%23FF6C37.svg?style=for-the-badge&logo=postman&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) 
+
+## Database Schema
+![Database Schema](assets/db-schema.png)
 
 ## Project Structure
 ```markdown
@@ -41,7 +44,10 @@ The project utilizes various dependencies managed through Maven, including:
 | Lombok          | Never write another getter or equals method again, with one annotation                                 |
 | Actuator        | Monitor and manage your application                                                                    |
 | DevTools        | Provides fast application restarts, LiveReload, and configurations for enhanced development experience |
-| Starter Test    | Unit test your application with Spring Boot support                                                    |
+| JUnit           | Unit testing framework for Java                                                                        |
+| Postman         | API Development & Test Environment                                                                     |
+| Docker          | Containerization Platform                                                                              |
+
 
 ## Application Configuration
 ```properties
@@ -56,8 +62,32 @@ spring.jpa.show-sql=true
 spring.cloud.config.enabled=false
 ```
 
-## Database Schema
-![Database Schema](assets/db-schema.png)
+## Application Dockerization
+1. Dockerize the postgres database
+```bash
+sudo docker pull postgres
+sudo docker run -d --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=root -e POSTGRES_USERNAME=postgres postgres
+sudo docker logs postgres  # check logs to see if the database is running
+# Create the database called kanban
+sudo docker exec -it postgres bash
+psql -h localhost -U postgres
+```
+
+2. Dockerize the Spring Boot application
+```dockerfile
+FROM openjdk:17-oracle
+VOLUME /tmp
+ADD target/kanban-task-management-app*.jar /app.jar
+CMD ["java", "-jar", "/app.jar", "--spring.profiles.active=prod"]
+EXPOSE 8085
+```
+
+The application is then built and run using the following commands:
+```bash
+sudo docker build -t kanban-app .
+# For local containerization (using the local postgres database)
+sudo docker run -d --name kanban-backend -p 8090:8085 -e POSTGRES_HOST=172.17.0.2 -e POSTGRES_PORT=5432 -e POSTGRES_USERNAME=postgres -e POSTGRES_PASSWORD=root kanban-backend
+```
 
 ## 🔮 Future Scope :
 Future iterations of the application may include:
